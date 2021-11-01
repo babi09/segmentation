@@ -5,8 +5,5 @@ SimpleITK
 nibabel
 keras
 tensorflow
-keras.models
-keras.layers
-keras.regularizers 
 scipy
 skimage
