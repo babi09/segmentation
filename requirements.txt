@@ -6,4 +6,7 @@ nibabel
 keras
 tensorflow
 scipy
-skimage
+scikit-image
+io
+os
+sys
