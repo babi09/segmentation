@@ -1,4 +1,5 @@
 streamlit
+python==3.8.0
 matplotlib
 numpy
 SimpleITK
@@ -12,5 +13,4 @@ keras.layers
 keras.regularizers 
 scipy
 detectCroppedSeg3DKerasDR_predict_ha
-pickle, random
-skimage.transform
+skimage
