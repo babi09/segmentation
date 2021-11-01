@@ -3,7 +3,6 @@ matplotlib
 numpy
 SimpleITK
 nibabel
-modelDeployment.py
 funcs_ha_use
 keras==2.4.3
 tensorflow==2.3.4
@@ -11,7 +10,5 @@ keras.models
 keras.layers
 keras.regularizers 
 scipy
-detectCroppedSeg3DKerasDR_predict_ha.py
 scikit-image
-funcs_ha_use.py
 
