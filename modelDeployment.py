@@ -2,7 +2,7 @@ import detectCroppedSeg3DKerasDR_predict_ha
 import streamlit as st
 
 @st.cache
-def runDeepSegmentationModel(organTarget, imagesAddress):
+def runDeepSegmentationModel(organTarget, img):
 
     # model parameters
     params = {};
@@ -23,13 +23,13 @@ def runDeepSegmentationModel(organTarget, imagesAddress):
         tDim = 5;
         params['tDim'] = tDim;
 
-    pName = imagesAddress
+    #pName = imagesAddress
     baseline = '1';
 
     # call the model to detect and segment and return the mask
-    maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs, zDimOri = detectCroppedSeg3DKerasDR_predict_ha.singlePatientDetection(pName, int(baseline),
+    maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs, zDimOri = detectCroppedSeg3DKerasDR_predict_ha.singlePatientDetection(img, int(baseline),
                                                                                               params, 'Liver');
-    maskSegment = detectCroppedSeg3DKerasDR_predict_ha.singlePatientSegmentation(params, pName, maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs,
+    maskSegment = detectCroppedSeg3DKerasDR_predict_ha.singlePatientSegmentation(params, img, maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs,
                                                 zDimOri, 'Liver');
 
     return maskSegment
