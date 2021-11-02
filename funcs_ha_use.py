@@ -16,7 +16,7 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 
 # read input image data including kidney ground-truth masks
 # def readData4(patientName,subjectInfo,reconMethod,genBoundBox):
-def readData4(dataAddress, reconMethod, genBoundBox):
+def readData4(img, reconMethod, genBoundBox):
     
     # seqNum=subjectInfo['numSeq'][patientName];
     seqNum = 1
@@ -44,7 +44,7 @@ def readData4(dataAddress, reconMethod, genBoundBox):
         # dataAddress=dataAddress0+patientName+'/'+patientName+'_DUN.nii';
         # dataAddress=dataAddress0+patientName+'/'+patientName+'_EXE.nii';
         ## dataAddress=dataAddress0+patientName+'/'+patientName+'_DCM.nii';
-        img= nib.load(dataAddress)
+        #img= nib.load(dataAddress)
         im=img.get_data() 
         
         check0 = np.min(im[:])
@@ -135,9 +135,9 @@ def readData4(dataAddress, reconMethod, genBoundBox):
     return im2, oriKM, boxes, rkm,lkm
 
 # read nii file and return image volume
-def readVolume4(dataAddress):
+def readVolume4(img):
 
-    img = nib.load(dataAddress)
+    # img = nib.load(dataAddress)
     im = img.get_data()
 
     check0 = np.min(im[:])
@@ -164,8 +164,8 @@ def readVolume4(dataAddress):
 
     return im2
 
-def plotMask(fig, ax, dataAddress, mask, slice_i):
-    img = nib.load(dataAddress)
+def plotMask(fig, ax, img, mask, slice_i):
+    #img = nib.load(dataAddress)
     # img_vol = readVolume4(dataAddress)
 
     Masks2SaveL = mask['L'];
