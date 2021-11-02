@@ -252,7 +252,7 @@ def singlePatientDetection(pName, baseline, params, organTarget):
     Masks2Save['L']=np.copy(predMaskL2.astype(float));
     
     #### write kidney masks to file ####    
-    funcs_ha_use.writeMasksDetect(pName,reconMethod,Masks2Save,1);
+    #funcs_ha_use.writeMasksDetect(pName,reconMethod,Masks2Save,1);
             
     return maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs, zDimOri
 
@@ -411,7 +411,7 @@ def singlePatientSegmentation(params, pName, maskDetect, boxDetect, kidneyNone, 
     Masks2Save['L']=np.copy(predMaskL2.astype(float));
 
     # write kidney segmentation masks to file
-    funcs_ha_use.writeMasks(pName,reconMethod,Masks2Save,1);
+    #funcs_ha_use.writeMasks(pName,reconMethod,Masks2Save,1);
     
     return Masks2Save
     
