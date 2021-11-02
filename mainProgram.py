@@ -13,7 +13,9 @@ import SimpleITK as sitk
 import nibabel as nib
 import modelDeployment
 import funcs_ha_use
-
+from PIL import Image
+from nibabel import FileHolder, Nifti1Image
+from io import BytesIO
 
 
 # streamlit interface
@@ -24,13 +26,34 @@ flag_Liver_Model = 0
 # upload file
 @st.cache
 def loadData(dataAddress):
-    img_vol = funcs_ha_use.readVolume4(uploaded_nii_files.name)
+    img_vol = funcs_ha_use.readVolume4(dataAddress)
     return img_vol
 
-uploaded_nii_files = st.sidebar.file_uploader("Select file:", type=['nii', 'gz'])
-if uploaded_nii_files is not None:
-    # read the data into an array
-    img_vol = loadData(uploaded_nii_files.name)
+def file_selector(folder_path='.'):
+    filenames = os.listdir(folder_path)
+    selected_filename = st.sidebar.selectbox('Select a file', filenames)
+    return os.path.join(folder_path, selected_filename)
+
+
+#uploaded_nii_file = file_selector()
+
+#st.write('You selected `%s`' % uploaded_nii_file)
+
+
+uploaded_nii_file = st.sidebar.file_uploader("Select file:", type=['nii'])
+# print (uploaded_nii_file)
+
+if uploaded_nii_file is not None:
+    rr = uploaded_nii_file.read()
+    bb = BytesIO(rr)
+    fh = FileHolder(fileobj=bb)
+    img = Nifti1Image.from_file_map({'header': fh, 'image': fh})
+
+
+    #img_vol = Image.open(uploaded_nii_file)
+    #content = np.array(img_vol)  # pil to cv
+    #print('yes')
+    img_vol = loadData(img)
     # plot the data
     # plot the slider
     n_slices = img_vol.shape[2]
@@ -54,9 +77,9 @@ if uploaded_nii_files is not None:
     if option == 'Liver':
         # load segmentation model
         # perform segmentation
-        maskSegment = modelDeployment.runDeepSegmentationModel('Liver', uploaded_nii_files.name)
+        maskSegment = modelDeployment.runDeepSegmentationModel('Liver', img)
         # plot segmentation mask
-        fig = funcs_ha_use.plotMask(fig, ax, uploaded_nii_files.name, maskSegment, slice_i)
+        fig = funcs_ha_use.plotMask(fig, ax, img, maskSegment, slice_i)
         #plot = st.pyplot(fig2)
 
 
