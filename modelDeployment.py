@@ -32,5 +32,4 @@ def runDeepSegmentationModel(organTarget, img):
     maskSegment = detectCroppedSeg3DKerasDR_predict_ha.singlePatientSegmentation(params, img, maskDetect, boxDetect, kidneyNone, vol4D0, vol4Dpcs,
                                                 zDimOri, 'Liver');
 
-    #return maskSegment
-    return 0
+    return maskSegment
