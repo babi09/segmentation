@@ -83,5 +83,5 @@ if uploaded_nii_file is not None:
         fig = funcs_ha_use.plotMask(fig, ax, img, maskSegment, slice_i)
 
 # plot volume
-    #plot = st.pyplot(fig)
+    plot = st.pyplot(fig)
 
